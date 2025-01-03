@@ -1,0 +1,21 @@
+module assi(output [3:0] sum);
+reg [3:0] x;
+initial begin
+x = 4'b0011;
+
+fork
+ #5 x = x + 1;
+
+
+
+#10 x = x + 2;
+
+join
+
+end
+
+endmodule
+
+Ans x=0011 because in question no timing is mentioned
+if at #5 x=0100
+at#10 x=0110
