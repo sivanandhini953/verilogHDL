@@ -1,0 +1,14 @@
+module assi();
+integer b;
+initial
+begin
+b='d12/3;
+
+$display ($time,"b=%d",b);
+end
+endmodule
+
+
+
+Ans:b= 4 (if - is not mentioned )
+b=1431655761 if - is considered before ' in b equation
