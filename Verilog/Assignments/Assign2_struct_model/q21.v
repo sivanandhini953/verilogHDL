@@ -10,5 +10,11 @@ nmos n1(Y,gnd,A);
 nmos n2(Y,gnd,B);
 endmodule
 
+module or_switch(A,B,Y);
+input A,B;
+output Y;
+  nor (Y,A,B);
+endmodule
+
 
 Ans   nor gate
