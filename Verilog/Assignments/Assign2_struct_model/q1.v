@@ -26,3 +26,33 @@ and (d10,a1 ,b1, b0bar);
 or (less,d8,d9,d10);
 
 endmodule
+
+
+
+
+
+
+module comp_2bittb;
+ reg a0,a1,b0,b1;
+ wire more,less,equal;
+comp_2bit sw(a0,b0, a1,b1,more,less,equal);
+initial
+    begin
+       $dumpfile("or_switch.vcd");
+  		$dumpvars(1);
+    end
+initial begin 
+$monitor($time,"more=%b,equal=%b, less=%b",more,equal,less);
+#5 a0=1'b0 ;b0=1'b0;a1=1'b0 ;b1=1'b0;
+#5 a0=1'b0; b0=1'b1;a1=1'b0; b1=1'b1;
+#5 a0=1'b1; b0=1'b0;a1=1'b1; b1=1'b0;
+#5 a0=1'b1; b0=1'b1;a1=1'b1; b1=1'b1;
+#5 a0=1'b1; b0=1'b1;a1=1'b0; b1=1'b0;
+#5 a0=1'b1; b0=1'b1;a1=1'b0; b1=1'b1;
+#5 a0=1'b1; b0=1'b1;a1=1'b1; b1=1'b0;
+#5 a0=1'b0; b0=1'b0;a1=1'b0; b1=1'b1;
+#5 $finish;
+ 
+end
+endmodule
+
