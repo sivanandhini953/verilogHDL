@@ -1,0 +1,58 @@
+module mux_2to1(in,sel,out);
+input [1:0]in;
+input sel;
+output out;
+assign out=(sel?(in[1]):(in[0]));
+endmodule
+
+
+module mux_4to1(i,s,y);
+input [3:0]i;
+input [1:0]s;
+output y;
+wire [2:1]w;
+
+mux_2to1 uut1(.in(i[3:2]),.sel(s[0]),.out(w[1]));
+mux_2to1 uut2(.in(i[1:0]),.sel(s[0]),.out(w[2]));
+mux_2to1 uut3(.in(w[2:1]),.sel(s[1]),.out(y));
+
+endmodule
+
+module mux_8to1(p,q,r);
+input [7:0]p;
+input [2:0]q;
+output [2:0]r;
+mux_4to1 uut4(.i(p[7:4]),.s(q[1:0]),.y(r[1]));
+mux_4to1 uut5(.i(p[3:0]),.s(q[1:0]),.y(r[0]));
+mux_2to1 uut6(.in(r[1:0]),.sel(q[2]),.out(r[2]));
+
+endmodule
+
+
+TEST BENCH
+
+
+module mux8to1tb;
+reg [7:0]p;
+reg [2:0]q;
+wire [2:0]r;
+
+mux_8to1 uut(.p(p),.q(q),.r(r));
+
+initial
+    begin
+       $dumpfile("exor.vcd");
+  		$dumpvars(1);
+		end
+ initial begin 
+ $monitor($time ,"sel=%b,out=%b",q,r[2]);
+  p=8'b11110000;
+ 
+ 
+ #5 q=3'b000;
+ #5 q=3'b010;
+ #5 q=3'b101;
+ #5 q=3'b111;
+ 
+ end
+ endmodule
