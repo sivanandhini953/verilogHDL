@@ -25,3 +25,4 @@ module JK_ff(
     end
 	assign qn=~q;
 endmodule
+
