@@ -1,0 +1,17 @@
+4. Which of the statements will execute from the below snippet &
+justify the behavior?
+reg c = 3’b00x;
+always@(*)
+begin
+casex( c )
+3’b000:st1;
+3’b100:st2;
+3’b001:st3;
+
+endcase
+end
+
+
+
+ans : st1
+because in casex 00x has possibilities for 000 and 001 . as 000 preceeds 001 st1 executes first.  
