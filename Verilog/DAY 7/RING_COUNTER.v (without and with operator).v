@@ -22,3 +22,7 @@ q[0] <= q[1];
 end
 end
 endmodule
+
+
+
+q <= {q[0],q[3:1]};   use this in else 
