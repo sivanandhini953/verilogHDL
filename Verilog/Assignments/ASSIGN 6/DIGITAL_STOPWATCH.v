@@ -33,7 +33,7 @@ module digital_stopwatch(
                     
                     next = IDLE;
                 end 
-                else if (msec_count < 11'd999) // Correct limit for 100ms
+                else if (msec_count < 11'd999) 
                     next = MSEC;
                 else 
                     next = SEC;
